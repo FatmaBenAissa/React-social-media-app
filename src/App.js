@@ -16,9 +16,10 @@ import "./style.scss";
 import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
 import { AuthContext } from "./context/authContext";
+import Friends from "./components/friends/Friends";
 
 function App() {
-  const {currentUser} = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext);
 
   const { darkMode } = useContext(DarkModeContext);
 
@@ -37,21 +38,21 @@ function App() {
     );
   };
 
-  const ProtectedRoute = ({ children }) => {
-    if (!currentUser) {
-      return <Navigate to="/login" />;
-    }
+  // const ProtectedRoute = ({ children }) => {
+  //   if (!currentUser) {
+  //     return <Navigate to="/login" />;
+  //   }
 
-    return children;
-  };
+  //   return children;
+  // };
 
   const router = createBrowserRouter([
     {
       path: "/",
       element: (
-        <ProtectedRoute>
-          <Layout />
-        </ProtectedRoute>
+        // <ProtectedRoute>
+        <Layout />
+        // </ProtectedRoute>
       ),
       children: [
         {
@@ -59,8 +60,13 @@ function App() {
           element: <Home />,
         },
         {
-          path: "/profile/:id",
+          // path: "/profile/:id",
+          path: "/profile",
           element: <Profile />,
+        },
+        {
+          path: "/freinds",
+          element: <Friends />,
         },
       ],
     },
